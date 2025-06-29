@@ -2,9 +2,7 @@ package config
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
-	"os"
 
 	_ "github.com/go-sql-driver/mysql"
 )
@@ -12,13 +10,7 @@ import (
 var DB *sql.DB
 
 func Connect() {
-    dbUser := os.Getenv("MYSQLUSER")
-    dbPass := os.Getenv("MYSQLPASSWORD")
-    dbHost := os.Getenv("MYSQLHOST")
-    dbPort := os.Getenv("MYSQLPORT")
-    dbName := os.Getenv("MYSQLDATABASE")
-
-    dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPass, dbHost, dbPort, dbName)
+    dsn := "root:eEfeVkAEAGxKMrOkcAvCatnSBUPasTVx@tcp(interchange.proxy.rlwy.net:12313)/railway"
 
     var err error
     DB, err = sql.Open("mysql", dsn)
