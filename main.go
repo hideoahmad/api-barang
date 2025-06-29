@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"my-api/config"
 	"my-api/routes"
@@ -12,6 +13,12 @@ import (
 func main() {
     config.Connect()
     router := routes.SetupRoutes()
-    fmt.Println("API running on port 8080")
-    log.Fatal(http.ListenAndServe(":8080", router))
+
+    port := os.Getenv("PORT")
+    if port == "" {
+        port = "8080" // Default port lokal
+    }
+
+    fmt.Println("API running on port", port)
+    log.Fatal(http.ListenAndServe(":"+port, router))
 }
